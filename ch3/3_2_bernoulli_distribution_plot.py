@@ -1,5 +1,3 @@
-import os
-
 import matplotlib.pyplot as plt
 
 p = 0.7  #A
@@ -26,6 +24,7 @@ plt.grid(axis='y', linestyle='--', alpha=0.3)  #G
 
 plt.tight_layout()  #H
 
+import os
 plt.savefig(f"assets/{os.path.basename(__file__).replace('.py', '.svg')}", transparent=True)
 plt.savefig(f"assets/{os.path.basename(__file__).replace('.py', '.png')}", transparent=True)
 
