@@ -11,16 +11,22 @@ df = pd.read_csv('birdstrike.csv')
 df = df[df['HEIGHT'].isna() == False]
 
 # bin up bird strikes by height, in buckets of 100 feet
-max_height = int(df['HEIGHT'].max() // 100 + 1) * 100
+max_height = int(df['HEIGHT'].max()
+                 // 100 + 1) * 100
+
 bins = list(range(0, max_height + 100, 100))
-df['HEIGHT_BIN'] = pd.cut(df['HEIGHT'], bins=bins, right=False)
-incidents_by_bin = df['HEIGHT_BIN'].value_counts().sort_index()
+df['HEIGHT_BIN'] = pd.cut(df['HEIGHT'],
+                          bins=bins, right=False)
+
+incidents_by_bin = (df['HEIGHT_BIN']
+                    .value_counts().sort_index())
 
 # extract out x and y
 x = np.arange(start=0, stop=max_height, step=100)
 y = incidents_by_bin.to_numpy()
 
-slope, intercept, r_value, p_value, std_err = linregress(x, y)  #B
+slope, intercept, r_value, p_value, std_err \
+    = linregress(x, y)  #B
 
 x_line = np.linspace(min(x), max(x), 100)  #C
 y_line = slope * x_line + intercept  #C
@@ -30,7 +36,9 @@ plt.scatter(x, y, label='Data points')  #D
 plt.plot(x_line,  #E
          y_line,  #E
          color='red',  #E
-         label=f'Fit: y = {slope:.2f}x {'-' if intercept < 0 else '+'} {abs(intercept):.2f}')  #E
+         label=f'Fit: y = {slope:.2f}x '
+               f'{'-' if intercept < 0 else '+'}'
+               f' {abs(intercept):.2f}')  #E
 
 plt.title("Bird Strikes by Height")
 plt.xlabel("Bird Strike Height (feet)")
