@@ -4,7 +4,8 @@ from sklearn.model_selection import KFold
 
 x = np.array([0.1, 0.5, 0.7, 1.2, 1.2, 1.5, 1.6, 1.9, 2.5, 2.5,
               2.7, 3.2, 3.3, 3.7, 3.8, 4.1, 4.5, 4.5, 4.5, 5.0,
-              5.1, 5.6, 5.7, 6.2, 6.3]).reshape(-1, 1)  #A
+              5.1, 5.6, 5.7, 6.2, 6.3]) \
+    .reshape(-1, 1)  #A
 
 y = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
               0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0,
@@ -14,7 +15,8 @@ kf = KFold(n_splits=3, shuffle=True)  #C
 
 accuracies = []  #C
 
-for fold, (train_index, test_index) in enumerate(kf.split(x), 1):  #C
+for fold, (train_index, test_index) \
+        in enumerate(kf.split(x), 1):  #C
     X_train, X_test = x[train_index], x[test_index]  #C
     Y_train, Y_test = y[train_index], y[test_index]  #C
 
@@ -23,9 +25,12 @@ for fold, (train_index, test_index) in enumerate(kf.split(x), 1):  #C
 
     predictions = model.predict(X_test)  #E
 
-    print(f"Fold {fold} predictions: {predictions}")  #F
+    print(f"Fold {fold} predictions: "
+          f"{predictions}")  #F
 
-    accuracy = np.sum(predictions == Y_test) / len(Y_test)  #G
+    accuracy = np.sum(predictions == Y_test) \
+               / len(Y_test)  #G
+
     print(f"Fold {fold} accuracy: {accuracy:.4f}")  #G
     accuracies.append(accuracy)  #G
 
