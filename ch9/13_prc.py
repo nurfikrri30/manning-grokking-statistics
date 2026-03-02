@@ -25,24 +25,28 @@ x = np.array([0.1, 0.13, 0.22, 0.31, 0.38, 0.38,
               6.11, 6.2, 6.21, 6.3]) \
     .reshape(-1, 1)  #A
 
-y = np.array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-              0., 0., 0., 0., 0., 0., 0., 0.,0., 0.,
-              0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
-              0., 0., 1., 0., 0., 0.,0., 0., 0., 1.,
-              0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,
-              1., 0., 1., 1.,1., 0., 0., 1., 1., 1.,
-              0., 1., 0., 1., 1., 1., 1., 1., 1., 1.,
-              1., 1.,1., 1., 1., 1., 1., 1., 0., 1.,
-              1., 1., 1., 1., 0., 1., 1., 1., 1., 1.,
-              1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])  #B
+y = np.array([0., 0., 0., 0., 0., 0., 0.,
+              0., 0., 0., 0., 0., 0., 0.,
+              0., 0., 0., 0.,0., 0., 0.,
+              0., 0., 0., 0., 0., 0., 0.,
+              0., 0.,0., 0., 1., 0., 0.,
+              0.,0., 0., 0., 1.,0., 0.,
+              0., 0., 1., 0., 0., 0., 0.,
+              0.,1., 0., 1., 1.,1., 0., 0.,
+              1., 1., 1.,0., 1., 0., 1., 1.,
+              1., 1., 1., 1., 1.,1., 1.,1.,
+              1., 1., 1., 1., 1., 0., 1.,1.,
+              1., 1., 1., 0., 1., 1., 1., 1.,
+              1.,1., 1., 1., 1., 1., 1., 1.,
+              1., 1., 1.])  #B
 
-
-X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=1/3)  #C
+X_train, X_test, Y_train, Y_test = \
+    train_test_split(x, y, test_size=1/3)  #C
 
 model = LogisticRegression(penalty=None)  #D
 model.fit(X_train, Y_train)  #D
 
-proba = model.predict_proba(X_test)[:, 1]  #E Get predicted probabilities for the positive class
+proba = model.predict_proba(X_test)[:, 1]  #E
 
 print(proba)  #F
 
@@ -50,11 +54,16 @@ ap = average_precision_score(Y_test, proba)  #G
 print(f"AP: {ap:.4f}")  #G
 
 #H Plot the precision-recall curve
-precision, recall, thresholds = precision_recall_curve(Y_test, proba)  #H
+precision, recall, thresholds = \
+    precision_recall_curve(Y_test, proba)  #H
+
 no_skill = sum(Y_test) / len(Y_test)  #H
 plt.figure()  #H
 plt.plot(recall, precision, label=f'AP = {ap:.4f}')  #H
-plt.plot([0, 1], [no_skill, no_skill], 'k--', label='No Skill')  #H
+
+plt.plot([0, 1], [no_skill, no_skill],
+         'k--', label='No Skill')  #H
+
 plt.xlim([0.0, 1.0])  #H
 plt.ylim([0.0, 1.05])  #H
 plt.xlabel('Recall')  #H
