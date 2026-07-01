@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def normal_pdf(x, mu, sigma):  #A
-    return 1/(sigma * sqrt(2*pi)) * exp(-((x - mu)/(2*sigma))**2)  #B
+    return 1/(sigma * sqrt(2*pi)) * exp(-0.5 * ((x - mu)/sigma)**2)  #B
 
 mu, sigma = 27.6, 3.18  #C
 
