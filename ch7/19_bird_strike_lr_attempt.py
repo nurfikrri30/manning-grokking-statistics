@@ -11,7 +11,7 @@ df = pd.read_csv('birdstrike.csv')
 df = df[df['HEIGHT'].isna() == False]
 
 # bin up bird strikes by height, in buckets of 100 feet
-max_height = int(df['HEIGHT'].max()
+max_height = int(df['HEIGHT'].max() \
                  // 100 + 1) * 100
 
 bins = list(range(0, max_height + 100, 100))
@@ -55,3 +55,10 @@ print(f"Intercept: {intercept:.8f}")  #H
 print(f"Pearson Correlation: {r_value:.4f}")  #H
 print(f"P-value (for slope): {p_value:.10f}")  #H
 print(f"Standard error of slope: {std_err:.4f}")  #H
+"""
+Slope: -0.03924224
+Intercept: 851.05028927
+Pearson Correlation: -0.1672
+P-value (for slope): 0.0026550029
+Standard error of slope: 0.0130
+"""
