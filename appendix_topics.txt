@@ -1,3 +1,0 @@
-Wilkes Shapiro Test
-QQ Plots
-Paired Testing
