@@ -10,6 +10,6 @@ weighted_average = sum(e*w  for e,w in zip(exam_scores, weights)) / sum(weights)
 # Final grade:  88.75
 print("Final grade: ", weighted_average)
 
-# Mean from NumPy:  88.75
+# Average from NumPy:  88.75
 import numpy as np
 print("Average from NumPy: ", np.mean(exam_scores))
